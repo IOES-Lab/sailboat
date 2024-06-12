@@ -1,3 +1,4 @@
+# docker compose -f docker-compose-dev.yaml up --build
 services:
   hardware:
     build:
@@ -6,7 +7,10 @@ services:
     image: ioes-hardware:latest
     # image: ioeslab/ioes-hardware:latest
     command: /bin/bash
+    privileged: true
     tty: true
+    volumes:
+      - /dev/pts:/dev/pts
 
   simulator:
     build:

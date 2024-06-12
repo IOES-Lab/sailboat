@@ -6,7 +6,10 @@ services:
     # image: ioes-hardware:latest
     image: ioeslab/ioes-hardware:latest
     command: /bin/bash
+    privileged: true
     tty: true
+    volumes:
+      - /dev/pts:/dev/pts
 
   simulator:
     # build:
