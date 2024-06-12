@@ -171,13 +171,13 @@ RUN . "/opt/ros/humble/setup.sh" && \
     cd ~/microros_ws && colcon build
 
 RUN . "/opt/ros/humble/setup.sh" && \
-    . "~/microros_ws/install/local_setup.bash" && \
+    cd ~/microros_ws && . "install/local_setup.sh" && \
     ros2 run micro_ros_setup create_agent_ws.sh && \
     ros2 run micro_ros_setup build_agent.sh
 
-# RUN . "/opt/ros/humble/setup.sh" && \
-#     . "~/microros_ws/install/local_setup.bash" && \
-#     socat -d -d pty,raw,echo=0 pty,raw,echo=0
+RUN . "/opt/ros/humble/setup.sh" && \
+    cd ~/microros_ws && . "install/local_setup.sh" && \
+    socat -d -d pty,raw,echo=0 pty,raw,echo=0
 
 # git clone https://github.com/ArduPilot/ardupilot.git
 # cd ardupilot/libraries/AP_DDS
@@ -186,11 +186,11 @@ RUN . "/opt/ros/humble/setup.sh" && \
 
 
 # setup entrypoint
-COPY ./ros_entrypoint_hardware.sh /
-RUN chmod +x /ros_entrypoint_hardware.sh
+# COPY ./ros_entrypoint_hardware.sh /
+# RUN chmod +x /ros_entrypoint_hardware.sh
 
-ENTRYPOINT ["/ros_entrypoint_hardware.sh"]
-CMD ["/bin/bash"]
+# ENTRYPOINT ["/ros_entrypoint_hardware.sh"]
+# CMD ["/bin/bash"]
 
 # # launch ros package
 # CMD ["ros2", "launch", "demo_nodes_cpp", "talker_listener.launch.py"]

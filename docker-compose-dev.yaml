@@ -9,8 +9,6 @@ services:
     command: /bin/bash
     privileged: true
     tty: true
-    volumes:
-      - /dev/pts:/dev/pts
 
   simulator:
     build:
